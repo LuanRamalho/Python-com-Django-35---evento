@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Ingressos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; }
+        .container { width: 80%; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #dc3545; color: white; }
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Ingressos</h2>
+
+        <!-- Botão para adicionar ingresso -->
+        <a href="{% url 'criar_ingresso' %}" class="button">Adicionar Ingresso</a>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Participante</th>
+                <th>Evento</th>
+                <th>Tipo</th>
+                <th>Preço</th>
+                <th>Data da Compra</th>
+                <th>Ações</th>
+            </tr>
+            {% for ingresso in ingressos %}
+            <tr>
+                <td>{{ ingresso.id }}</td>
+                <td>{{ ingresso.participante.nome }}</td>
+                <td>{{ ingresso.evento.nome }}</td>
+                <td>{{ ingresso.tipo }}</td>
+                <td>R$ {{ ingresso.preco }}</td>
+                <td>{{ ingresso.data_compra|date:"d/m/Y H:i" }}</td>
+                <td><a href="{% url 'editar_ingresso' ingresso.id %}">Editar</a> | <a href="{% url 'excluir_ingresso' ingresso.id %}">Excluir</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

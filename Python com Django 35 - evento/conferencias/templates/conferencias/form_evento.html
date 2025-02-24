@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Evento</title>
+    <style>
+        body { background-color: #f5f5f5; font-family: Arial, sans-serif; }
+        .container { max-width: 500px; margin: auto; padding: 20px; background: white; border-radius: 10px; }
+        h1 { text-align: center; color: #333; }
+        form { display: flex; flex-direction: column; }
+        input, textarea { margin-bottom: 10px; padding: 10px; }
+        button { background: blue; color: white; padding: 10px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Evento</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

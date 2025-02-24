@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ingresso</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; }
+        .container { width: 50%; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        .button { padding: 10px; background: red; color: white; text-decoration: none; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro de Ingresso</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

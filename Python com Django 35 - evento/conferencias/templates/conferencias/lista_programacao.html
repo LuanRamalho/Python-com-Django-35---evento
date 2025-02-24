@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Programação</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; }
+        .container { width: 80%; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #6f42c1; color: white; }
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Programação</h2>
+
+        <!-- Botão para adicionar programação -->
+        <a href="{% url 'criar_programacao' %}" class="button">Adicionar Programação</a>
+
+        <table>
+            <tr>
+                <th>Horário</th>
+                <th>Palestrante</th>
+                <th>Evento</th>
+                <th>Ações</th>
+            </tr>
+            {% for programacao in programacoes %}
+            <tr>
+                <td>{{ programacao.horario|date:"d/m/Y H:i" }}</td>
+                <td>{{ programacao.palestrante.nome }}</td>
+                <td>{{ programacao.evento.nome }}</td>
+                <td><a href="{% url 'editar_programacao' programacao.id %}">Editar</a> | <a href="{% url 'excluir_programacao' programacao.id %}">Excluir</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

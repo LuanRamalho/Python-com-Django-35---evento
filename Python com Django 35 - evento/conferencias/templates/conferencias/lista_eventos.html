@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Eventos</title>
+    <style>
+        body { background-color: #f5f5f5; font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: auto; padding: 20px; background: white; border-radius: 10px; }
+        h1 { text-align: center; color: #333; }
+        .evento { padding: 10px; border-bottom: 1px solid #ddd; }
+        .evento a { text-decoration: none; color: blue; font-weight: bold; }
+        .botao { display: block; width: 150px; text-align: center; background: green; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin: 10px auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eventos</h1>
+        <a href="{% url 'criar_evento' %}" class="botao">Novo Evento</a>
+        {% for evento in eventos %}
+            <div class="evento">
+                <h3>{{ evento.nome }}</h3>
+                <p>Local: {{ evento.local }}</p>
+                <p>Data: {{ evento.data_inicio|date:"d/m/Y H:i" }} - {{ evento.data_fim|date:"d/m/Y H:i" }}</p>
+                <a href="{% url 'editar_evento' evento.id %}">Editar</a> |
+                <a href="{% url 'excluir_evento' evento.id %}">Excluir</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
